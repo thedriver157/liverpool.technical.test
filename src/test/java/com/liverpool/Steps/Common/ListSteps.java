@@ -36,6 +36,8 @@ public class ListSteps {
 
         I.get().scrollDown();
 
+        I.get().takeScreenshot("validate filter by brand");
+
         elementListBrand = listPage.getAllElementBrandsFromList();
         this.validateFilters(elementListBrand, brand);
     }
@@ -53,6 +55,8 @@ public class ListSteps {
         this.validateSorting(sort, elementListPricing);
 
         I.get().scrollDown();
+
+        I.get().takeScreenshot("validate sort by pricing");
 
         elementListPricing = listPage.getAllElementsPricingFromList();
         this.validateSorting(sort, elementListPricing);

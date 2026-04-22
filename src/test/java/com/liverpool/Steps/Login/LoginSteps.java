@@ -29,6 +29,8 @@ public class LoginSteps {
     public void validate_is_user_not_logged() {
         loginPage = I.get().initPage(LoginPage.class);
         assertThat(loginPage.isUserLogged()).isFalse();
+
+        I.get().takeScreenshot("validate user not logged");
     }
 
     @Then("^validate is user not logged from shopping cart$")
@@ -49,5 +51,7 @@ public class LoginSteps {
 
         String userName = myAccountPage.getUserName();
         assertThat(userName).isEqualTo(EnvVars.getEnvVar("USER_NAME"));
+
+        I.get().takeScreenshot("validate login successfull");
     }
 }
