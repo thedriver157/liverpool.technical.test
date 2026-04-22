@@ -25,8 +25,7 @@ public class HomePage {
         I.waitForVisible(homeInputSearch);
         I.tap(homeInputSearch);
 
-        //I.waitForVisibleRefreshed(inputSearch);
-        I.waitForDisplayed(inputSearch);
+        I.waitForVisibleRefreshed(inputSearch);
         I.fillField(inputSearch, product);
         I.pressKey(AndroidKey.ENTER);
     }
