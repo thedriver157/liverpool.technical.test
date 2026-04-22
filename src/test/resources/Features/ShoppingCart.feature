@@ -2,7 +2,7 @@
 Feature: Shopping Cart
 
   @shoppingCart
-  Scenario: Valid add products to shopping cart after login
+  Scenario: Validate add products to shopping cart after login
     Given try to close the compatibility alert window and permissions
     When perform a product search Pantalla
     And select first element in list

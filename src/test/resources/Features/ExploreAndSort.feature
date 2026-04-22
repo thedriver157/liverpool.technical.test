@@ -2,7 +2,7 @@
 Feature: Explore and Sort
 
   @exploreAndSort
-  Scenario: Valid explore department and sort products list
+  Scenario: Validate explore department and sort products list
     Given try to close the compatibility alert window and permissions
     When access to navbar section EXPLORE
     And explore section ELECTRONIC

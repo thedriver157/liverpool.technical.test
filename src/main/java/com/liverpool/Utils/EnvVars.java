@@ -7,7 +7,7 @@ public class EnvVars {
 
     private static void loadVars() {
         dotenv = Dotenv.configure()
-                .directory("../")
+                .directory("./")
                 .filename(".env")
                 .ignoreIfMalformed()
                 .ignoreIfMissing()

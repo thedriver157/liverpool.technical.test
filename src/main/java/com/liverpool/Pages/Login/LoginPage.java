@@ -17,17 +17,18 @@ public class LoginPage {
     private final IActions I;
     static Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass().getName());
 
-    MobileElement goToLoginBtn = MobileElement.forAndroid("#mx.com.liverpool.shoppingapp:id/btnGoToLogin");
-    MobileElement userInput = MobileElement.forAndroid("android=new UiSelector().resourceId(\"username\")");
+    MobileElement goToLoginShoppingCartBtn = MobileElement.forAndroid("#mx.com.liverpool.shoppingapp:id/btnGoToLogin");
+    MobileElement goToLoginFromMyAccount = MobileElement.forAndroid("#mx.com.liverpool.shoppingapp:id/txt_Login");
+    MobileElement emailInput = MobileElement.forAndroid("android=new UiSelector().resourceId(\"username\")");
     MobileElement passInput = MobileElement.forAndroid("android=new UiSelector().resourceId(\"password\")");
-    MobileElement loginBtn = MobileElement.forAndroid("android=new UiSelector().textContains(\"Iniciar sesión\")");
+    MobileElement loginBtn = MobileElement.forAndroid("//*[contains(@class, 'Button')][@text='Iniciar sesión']");
     MobileElement closeBtn = MobileElement.forAndroid("#com.android.chrome:id/close_button");
 
     public boolean isUserLogged() {
         LOGGER.info("Validate if user is logged");
 
         try {
-            I.waitForDisplayed(userInput);
+            I.waitForDisplayed(emailInput);
             return false;
         } catch (Exception e) {
             return true;
@@ -38,21 +39,28 @@ public class LoginPage {
         LOGGER.info("Validate if user is logged from shopping cart");
 
         try {
-            I.waitForDisplayed(goToLoginBtn);
+            I.waitForDisplayed(goToLoginShoppingCartBtn);
             return false;
         } catch (Exception e) {
             return true;
         }
     }
 
-    public void login() {
-        LOGGER.info("Login");
-        if (this.isUserLogged()) {
-            I.fillField(userInput, EnvVars.getEnvVar("User_1"));
-            I.fillField(passInput, EnvVars.getEnvVar("Password"));
+    public void goToLoginFromMyAccount() {
+        I.waitForDisplayed(goToLoginFromMyAccount);
+        I.tap(goToLoginFromMyAccount);
+    }
 
-            I.tap(loginBtn);
-        }
+    public void login() {
+        this.login(EnvVars.getEnvVar("USER_1"), EnvVars.getEnvVar("PASSWORD"));
+    }
+
+    public void login(String email, String pass) {
+        LOGGER.info("Login with email: {}", email);
+        I.fillField(emailInput, email);
+        I.fillField(passInput, pass);
+
+        I.tap(loginBtn);
     }
 
     public void closeLoginScreen() {

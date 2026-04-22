@@ -5,10 +5,13 @@ import com.liverpool.Interfaces.IDriverStrategy;
 import com.liverpool.Models.MobileConfigModel;
 import com.liverpool.Utils.MobileElement;
 import com.liverpool.Utils.Reflection;
+import com.liverpool.Utils.Screenshot;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
@@ -52,6 +55,12 @@ public class IActions {
         LOGGER.debug("Fill Field");
         WebElement webElement = mobileElement.locatorResolve(driverStrategy.get().getDriver());
         webElement.sendKeys(text);
+    }
+
+    public String grabText(MobileElement mobileElement) {
+        LOGGER.debug("Grab Text");
+        WebElement webElement = mobileElement.locatorResolve(driverStrategy.get().getDriver());
+        return webElement.getText();
     }
 
     public List<WebElement> grabAllElements(MobileElement mobileElement) {
@@ -144,5 +153,9 @@ public class IActions {
 
     public void waitForElementToBeClickable(MobileElement mobileElement, int timeout) {
         waitFor(ExpectedConditions.elementToBeClickable(mobileElement.locatorResolve(driverStrategy.get().getDriver())), timeout);
+    }
+
+    public void takeScreenshot(String screenshotName) {
+        Screenshot.takeScreenshot(((TakesScreenshot) driverStrategy.get().getDriver()).getScreenshotAs(OutputType.BYTES), screenshotName);
     }
 }
