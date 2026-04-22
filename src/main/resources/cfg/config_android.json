@@ -1,0 +1,12 @@
+{
+  "platform": "Android",
+  "capabilities": {
+    "platformName": "Android",
+    "deviceName": "Android Emulator",
+    "automationName": "UiAutomator2",
+    "appPackage": "mx.com.liverpool.shoppingapp",
+    "appActivity": "mx.com.liverpool.shoppingapp.splash.view.SplashActivity",
+    "autoGrantPermissions": true,
+    "autoAcceptAlerts": true
+  }
+}

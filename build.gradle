@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.liverpool'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:7.12.0'
+    implementation 'org.assertj:assertj-core:3.27.7'
+    implementation 'io.cucumber:cucumber-java:7.34.3'
+    implementation 'io.cucumber:cucumber-testng:7.34.3'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.43.0'
+    implementation 'org.seleniumhq.selenium:selenium-devtools-v145:4.43.0'
+    implementation 'io.appium:java-client:10.1.0'
+
+    implementation 'tools.jackson.core:jackson-databind:3.1.2'
+    implementation 'commons-io:commons-io:2.21.0'
+    implementation 'io.github.cdimascio:dotenv-java:3.2.0'
+    implementation 'joda-time:joda-time:2.14.1'
+
+    implementation 'org.slf4j:slf4j-api:2.0.17'
+    implementation 'org.apache.logging.log4j:log4j-slf4j2-impl:2.25.4'
+    implementation 'org.apache.logging.log4j:log4j-core:2.25.4'
+
+    implementation 'io.qameta.allure:allure-java-commons:2.34.0'
+    implementation 'io.qameta.allure:allure-testng:2.34.0'
+}
+
+tasks.named('test') {
+    outputs.upToDateWhen { false }
+
+    useTestNG() {
+        suites 'src/test/resources/testng.xml'
+    }
+
+    systemProperty "loadConfig", System.getProperty("loadConfig")
+    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+}

@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite BDD Paralell" data-provider-thread-count="1">
+    <test name="Regression Tests">
+        <classes>
+            <class name="com.liverpool.Runners.TestRunner"/>
+        </classes>
+    </test>
+</suite>
