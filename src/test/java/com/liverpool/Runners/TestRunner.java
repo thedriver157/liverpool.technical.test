@@ -4,8 +4,9 @@ import io.cucumber.testng.*;
 import org.testng.annotations.*;
 
 @CucumberOptions(
-        features = "src/test/resources/features/",
-        glue = { "com.liverpool.Steps", "com.liverpool.Hooks" }
+        features = "src/test/resources/Features/",
+        glue = { "com.liverpool.Steps", "com.liverpool.Hooks" },
+        plugin = { "pretty", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm" }
 )
 
 public class TestRunner {

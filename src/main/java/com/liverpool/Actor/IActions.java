@@ -137,4 +137,11 @@ public class IActions {
     public void waitForVisibleRefreshed(MobileElement mobileElement, int timeout) {
         waitForRefreshed(ExpectedConditions.visibilityOf(mobileElement.locatorResolve(driverStrategy.get().getDriver())), timeout);
     }
+
+    public void waitForElementToBeClickable(MobileElement mobileElement) {
+        this.waitForElementToBeClickable(mobileElement, mobileConfigModel.getTimeout());
+    }
+    public void waitForElementToBeClickable(MobileElement mobileElement, int timeout) {
+        waitFor(ExpectedConditions.elementToBeClickable(mobileElement.locatorResolve(driverStrategy.get().getDriver())), timeout);
+    }
 }

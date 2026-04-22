@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '3.0.2'
 }
 
 group = 'com.liverpool'
@@ -29,6 +30,25 @@ dependencies {
 
     implementation 'io.qameta.allure:allure-java-commons:2.34.0'
     implementation 'io.qameta.allure:allure-testng:2.34.0'
+    implementation 'io.qameta.allure:allure-cucumber7-jvm:2.24.0'
+
+    runtimeOnly 'org.aspectj:aspectjweaver:1.9.25.1'
+}
+
+allure {
+    version.set("2.33.0")
+    adapter {
+        frameworks {
+            testng {
+                adapterVersion.set("2.33.0")
+                enabled.set(false)
+            }
+        }
+    }
+}
+
+tasks.named('allureReport') {
+    clean = true
 }
 
 tasks.named('test') {
@@ -40,4 +60,7 @@ tasks.named('test') {
 
     systemProperty "loadConfig", System.getProperty("loadConfig")
     systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+    systemProperty "allure.results.directory", layout.buildDirectory.dir("allure-results").get().asFile.absolutePath
+
+    finalizedBy 'allureReport'
 }

@@ -13,7 +13,7 @@ public class Locators {
         if (locator.startsWith("#")) {
             locatorResolved = AppiumBy.id(locator.substring(1));
         } else if (locator.startsWith("android=")) {
-            locatorResolved = AppiumBy.androidUIAutomator(locator);
+            locatorResolved = AppiumBy.androidUIAutomator(locator.substring(8));
         } else if (locator.startsWith("~")) {
             locatorResolved = AppiumBy.accessibilityId(locator.substring(1));
         } else {

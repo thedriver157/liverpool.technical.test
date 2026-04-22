@@ -6,4 +6,4 @@ Feature: Search and filter
     Given try to close the compatibility alert window and permissions
     When perform a product search Computadora
     And filter by Apple brand
-    Then valid that the filter brand Apple is applied correctly
+    Then valid that filter brand Apple is applied correctly

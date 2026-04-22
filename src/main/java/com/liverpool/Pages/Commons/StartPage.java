@@ -1,4 +1,4 @@
-package com.liverpool.Pages.Init;
+package com.liverpool.Pages.Commons;
 
 import com.liverpool.Actor.IActions;
 import com.liverpool.Utils.MobileElement;
@@ -17,16 +17,27 @@ public class StartPage {
     static Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass().getName());
 
     MobileElement acceptCompabilityMsgBtn = MobileElement.forAndroid("#android:id/button2");
+    MobileElement dontShowAgainMsgBtn = MobileElement.forAndroid("#android:id/button1");
     MobileElement allowTrackingPermissionsBtn = MobileElement.forAndroid("#mx.com.liverpool.shoppingapp:id/btn_allow_permission");
     MobileElement skipTutorialBtn = MobileElement.forAndroid("#mx.com.liverpool.shoppingapp:id/skip_action");
 
-    public void closeCompatibilityAlertWindow() {
+    public void acceptCompatibilityAlertWindow() {
         try {
-            LOGGER.info("Close Compatibility Alert Window");
+            LOGGER.info("Accept Compatibility Alert Window");
             I.waitForVisible(acceptCompabilityMsgBtn, 2);
             I.tap(acceptCompabilityMsgBtn);
         } catch (Exception e) {
             LOGGER.error("Element not visible: {}", acceptCompabilityMsgBtn);
+        }
+    }
+
+    public void dontShowAgainCompatibilityAlertWindow() {
+        try {
+            LOGGER.info("Don't Show Again Compatibility Alert Window");
+            I.waitForVisible(dontShowAgainMsgBtn, 2);
+            I.tap(dontShowAgainMsgBtn);
+        } catch (Exception e) {
+            LOGGER.error("Element not visible: {}", dontShowAgainMsgBtn);
         }
     }
 
