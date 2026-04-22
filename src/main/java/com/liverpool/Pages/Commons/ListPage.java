@@ -7,10 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
-import java.util.Comparator;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class ListPage {
 
@@ -39,8 +36,15 @@ public class ListPage {
     MobileElement sortByQualifications = MobileElement.forAndroid("android=new UiSelector().text(\"Calificaciones\")");
 
     public void validateElementList() {
-        LOGGER.info("Validate List Elements");
+        LOGGER.info("Validate list elements");
         I.waitForDisplayed(elementList);
+    }
+
+    public void selectFirstElementInList() {
+        LOGGER.info("Select first element in list");
+        this.validateElementList();
+        List<WebElement> elementsList = I.grabAllElements(elementList);
+        elementsList.stream().findFirst().get().click();
     }
 
     public void addFilterToList(String specificFilter) {
@@ -66,14 +70,11 @@ public class ListPage {
         I.tap(applyFilter);
     }
 
-    public void validateFilterAppliedinElementList(String brand) {
-        LOGGER.info("Validate Filter Applied in List Elements");
+    public List<WebElement> getAllElementBrandsFromList() {
+        LOGGER.info("Get all list elements");
         this.validateElementList();
 
-        List<WebElement> elementListBrand = I.grabAllElements(elementBrandList);
-        assertThat(elementListBrand)
-                .extracting(WebElement::getText)
-                .contains(brand.toUpperCase());
+        return I.grabAllElements(elementBrandList);
     }
 
     public void sortListBy(String sort) {
@@ -107,20 +108,10 @@ public class ListPage {
         }
     }
 
-    public void validateSortAppliedinElementList(String sort) {
-        LOGGER.info("Validate Sort Applied in List Elements");
+    public List<WebElement> getAllElementsPricingFromList() {
+        LOGGER.info("Validate sort applied in list elements");
         this.validateElementList();
 
-        List<WebElement> elementListPricing = I.grabAllElements(elementPricingList);
-
-        if (sort.equalsIgnoreCase("LEAST_TO_GREATEST")) {
-            assertThat(elementListPricing)
-                    .extracting(WebElement::getText)
-                    .isSorted();
-        } else {
-            assertThat(elementListPricing)
-                    .extracting(WebElement::getText)
-                    .isSortedAccordingTo(Comparator.reverseOrder());
-        }
+        return I.grabAllElements(elementPricingList);
     }
 }

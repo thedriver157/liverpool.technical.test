@@ -29,6 +29,7 @@ public class Hooks {
     @After
     public void tearDown(Scenario scenario) {
         LOGGER.info("Finish Scenario: {}, Status: {}", scenario.getName(), scenario.getStatus());
+
         if (I.get() != null) {
             I.get().closeDriver();
             I.remove();

@@ -30,10 +30,10 @@ public class Locators {
             locatorResolved = AppiumBy.id(locator.substring(1));
         } else if (locator.startsWith("~")) {
             locatorResolved = AppiumBy.accessibilityId(locator.substring(1));
-        } else if (locator.startsWith("-ios class chain")) {
-            locatorResolved = AppiumBy.iOSClassChain(locator);
-        } else if (locator.startsWith("-ios predicate")) {
-            locatorResolved = AppiumBy.iOSNsPredicateString(locator);
+        } else if (locator.startsWith("iosclasschain=")) {
+            locatorResolved = AppiumBy.iOSClassChain(locator.substring(14));
+        } else if (locator.startsWith("iospredicate=")) {
+            locatorResolved = AppiumBy.iOSNsPredicateString(locator.substring(13));
         } else {
             locatorResolved = AppiumBy.xpath(locator);
         }

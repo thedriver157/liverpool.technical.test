@@ -23,7 +23,7 @@ public class StartPage {
 
     public void acceptCompatibilityAlertWindow() {
         try {
-            LOGGER.info("Accept Compatibility Alert Window");
+            LOGGER.info("Accept compatibility alert window");
             I.waitForVisible(acceptCompabilityMsgBtn, 2);
             I.tap(acceptCompabilityMsgBtn);
         } catch (Exception e) {
@@ -33,7 +33,7 @@ public class StartPage {
 
     public void dontShowAgainCompatibilityAlertWindow() {
         try {
-            LOGGER.info("Don't Show Again Compatibility Alert Window");
+            LOGGER.info("Don't show again compatibility alert window");
             I.waitForVisible(dontShowAgainMsgBtn, 2);
             I.tap(dontShowAgainMsgBtn);
         } catch (Exception e) {
@@ -42,13 +42,13 @@ public class StartPage {
     }
 
     public void allowTrackingPermissions() {
-        LOGGER.info("Allow Tracking Permissions");
+        LOGGER.info("Allow tracking permissions");
         I.waitForVisible(allowTrackingPermissionsBtn, 2);
         I.tap(allowTrackingPermissionsBtn);
     }
 
     public void skipTutorial() {
-        LOGGER.info("Skip Tutorial");
+        LOGGER.info("Skip tutorial");
         I.waitForDisplayed(skipTutorialBtn, 60);
         I.tap(skipTutorialBtn);
     }

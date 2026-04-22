@@ -141,6 +141,7 @@ public class IActions {
     public void waitForElementToBeClickable(MobileElement mobileElement) {
         this.waitForElementToBeClickable(mobileElement, mobileConfigModel.getTimeout());
     }
+
     public void waitForElementToBeClickable(MobileElement mobileElement, int timeout) {
         waitFor(ExpectedConditions.elementToBeClickable(mobileElement.locatorResolve(driverStrategy.get().getDriver())), timeout);
     }

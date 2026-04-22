@@ -9,4 +9,4 @@ Feature: Explore and Sort
     And explore electronic subsection GAMING
     And explore gaming subsection PC_GAMER
     And sort by LEAST_TO_GREATEST
-    Then valid that sort by pricing LEAST_TO_GREATEST is applied correctly
+    Then validate that sort by pricing LEAST_TO_GREATEST is applied correctly

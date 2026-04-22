@@ -24,7 +24,7 @@ public class NavBarSection {
     static Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass().getName());
 
     public void accessToNavBarSection(String section) {
-        LOGGER.info("Access To NavBarSection: {}", section.toUpperCase());
+        LOGGER.info("Access to navBarSection: {}", section.toUpperCase());
 
         switch (section.toUpperCase()) {
             case "START" -> I.tap(startSection);
