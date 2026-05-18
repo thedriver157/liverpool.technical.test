@@ -7,4 +7,4 @@ rules:
       - do: title
         must_match:
           regex: "^(FEAT|FIX|DOCS|REFACTOR): .+"
-          message: "Error: El título debe iniciar con 'FEAT: ', 'FIX: ',"
+          message: "Error: El título debe iniciar con 'FEAT: ', 'FIX: ', 'DOCS: ', 'REFACTOR: '"
