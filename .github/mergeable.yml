@@ -1,8 +1,10 @@
 version: "1.1"
 rules:
-  - name: "Validar nombre de la Pull Request"
+  - name: "Validar Formato del Título"
     pull_request:
-      types: [opened, edited]
-    title:
-      # Expresión regular: debe empezar con un prefijo convencional
-      must_match: "^(FEAT|FIX|DOCS|REFACTOR):"
+      types: [opened, edited, synchronize]
+    validate:
+      - do: title
+        must_match:
+          regex: "^(FEAT|FIX|DOCS|REFACTOR): .+"
+          message: "Error: El título debe iniciar con 'FEAT: ', 'FIX: ',"

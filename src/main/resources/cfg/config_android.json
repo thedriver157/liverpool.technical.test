@@ -2,7 +2,7 @@
   "platform": "Android",
   "capabilities": {
     "platformName": "Android",
-    "deviceName": "Android Emulator",
+    "deviceName": "Android Emulator 5554",
     "automationName": "UiAutomator2",
     "appPackage": "mx.com.liverpool.shoppingapp",
     "appActivity": "mx.com.liverpool.shoppingapp.splash.view.SplashActivity",
