@@ -16,10 +16,12 @@ import java.util.Map;
 
 public class AppiumAndroidDriverStrategy implements IDriverStrategy {
     protected WebDriver androidDriver;
+    private MobileConfigModel mobileConfigModel;
     private Map<String, String> androidCapabilities;
     static Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass().getName());
 
     AppiumAndroidDriverStrategy(MobileConfigModel mobileConfigModel) {
+        this.mobileConfigModel = mobileConfigModel;
         androidCapabilities = Json.convertCapabilitiesToMap(mobileConfigModel.getCapabilities());
     }
 
@@ -41,7 +43,11 @@ public class AppiumAndroidDriverStrategy implements IDriverStrategy {
 
         try {
             LOGGER.info("Init Android Driver");
-            this.androidDriver = new AndroidDriver(new URI("http://127.0.0.1:4723/wd/hub").toURL(), uiAutomator2Options);
+            this.androidDriver = new AndroidDriver(
+                    this.mobileConfigModel.isRemote()
+                            ? new URI(this.mobileConfigModel.getRemoteUrl()).toURL()
+                            : new URI("http://127.0.0.1:4723/wd/hub").toURL(),
+                    uiAutomator2Options);
         } catch (Exception e) {
             throw new RuntimeException("Error init Android Driver", e);
         }
