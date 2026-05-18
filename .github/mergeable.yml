@@ -1,9 +1,12 @@
 version: "2"
 mergeable:
-  - name: "Validacion de Nombres"
-    index: 1
+  - when: pull_request.*, pull_request_review.*
     validate:
+      - do: approvals
+        min:
+          count: 1
+      # Validacion de Titulo PR
       - do: title
-        must_match:
+        must_include:
           regex: "^(FEAT|FIX|DOCS|REFACTOR): .+"
           message: "Error: El título debe iniciar con 'FEAT: ', 'FIX: ', 'DOCS: ', 'REFACTOR: '"

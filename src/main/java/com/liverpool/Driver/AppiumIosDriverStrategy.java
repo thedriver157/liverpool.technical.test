@@ -16,10 +16,12 @@ import java.util.Map;
 
 public class AppiumIosDriverStrategy implements IDriverStrategy {
     protected WebDriver iosDriver;
+    private MobileConfigModel mobileConfigModel;
     private Map<String, String> iosCapabilities;
     static Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass().getName());
 
     AppiumIosDriverStrategy(MobileConfigModel mobileConfigModel) {
+        this.mobileConfigModel = mobileConfigModel;
         iosCapabilities = Json.convertCapabilitiesToMap(mobileConfigModel.getCapabilities());
     }
 
@@ -40,7 +42,11 @@ public class AppiumIosDriverStrategy implements IDriverStrategy {
 
         try {
             LOGGER.info("Init IOS Driver");
-            this.iosDriver = new IOSDriver(new URI("http://127.0.0.1:4723/wd/hub").toURL(), xcuiTestOptions);
+            this.iosDriver = new IOSDriver(
+                    this.mobileConfigModel.isRemote()
+                        ? new URI(this.mobileConfigModel.getRemoteUrl()).toURL()
+                        : new URI("http://127.0.0.1:4723/wd/hub").toURL(),
+                    xcuiTestOptions);
         } catch (Exception e) {
             throw new RuntimeException("Error init IOS Driver", e);
         }
