@@ -1,10 +1,9 @@
-version: "1.1"
-rules:
-  - name: "Validar Formato del Título"
-    pull_request:
-      types: [opened, edited, synchronize]
+version: "2"
+mergeable:
+  - name: "Validacion de Nombres"
+    index: 1
     validate:
       - do: title
         must_match:
           regex: "^(FEAT|FIX|DOCS|REFACTOR): .+"
-          message: "Error: El título debe iniciar con 'FEAT: ', 'FIX: ',"
+          message: "Error: El título debe iniciar con 'FEAT: ', 'FIX: ', 'DOCS: ', 'REFACTOR: '"
