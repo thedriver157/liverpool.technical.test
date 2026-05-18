@@ -8,5 +8,5 @@ mergeable:
       # Validacion de Titulo PR
       - do: title
         must_include:
-          regex: "^(FEAT|FIX|DOCS|REFACTOR): .+"
-          message: "Error: El título debe iniciar con 'FEAT: ', 'FIX: ', 'DOCS: ', 'REFACTOR: '"
+          regex: "^(FEAT|FIX|DOCS): .+"
+          message: "Error: El título debe iniciar con 'FEAT: ', 'FIX: ', 'DOCS: '"
